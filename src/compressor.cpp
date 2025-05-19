@@ -6,6 +6,8 @@
 #include <cstdint>
 #include <queue>
 #include <memory>
+#include <string>
+#include <map>
 
 
 std::unordered_map<uint8_t, size_t> buildFrequencyTable(const std::string& filePath) {
@@ -58,6 +60,17 @@ HuffmanNode* buildHuffmanTree(const std::unordered_map<uint8_t, size_t>& freqTab
     return minHeap.top();
 }
 
+void generateHuffmanCodes(HuffmanNode* node, const std::string& path, std::map<uint8_t, std::string>& huffmanCodes) {
+    if (!node) return;
+    if (node->isLeaf()) {
+        huffmanCodes[node->byte] = path;
+        return;
+    }
+
+    generateHuffmanCodes(node->left, path + "0", huffmanCodes);
+    generateHuffmanCodes(node->right, path + "1", huffmanCodes);
+}
+
 void Compressor::compress(const std::string& inputFile, const std::string& outputFile) {
     std::cout << "Compressing: " << inputFile << " -> " << outputFile << std::endl;
     try {
@@ -69,6 +82,14 @@ void Compressor::compress(const std::string& inputFile, const std::string& outpu
 
         HuffmanNode* root = buildHuffmanTree(freqTable);
         std::cout << "Huffman Tree built successfully\n";
+
+        std::map<uint8_t, std::string> huffmanCodes;
+        generateHuffmanCodes(root, "", huffmanCodes);
+
+        std::cout << "Huffman Codes:\n";
+        for (const auto& [byte, code] : huffmanCodes) {
+            std::cout << static_cast<int>(byte) << " -> " << code << '\n';
+        }
 
         // TODO: Encode the tree
     }
