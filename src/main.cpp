@@ -4,7 +4,7 @@
 
 int main(int argc, char* argv[]) {
     if (argc < 4) {
-        std::cerr << "Usage:\n" << "    huffman_compressor -c input output\n" << "  huffman_compressor -d input output\n";
+        std::cerr << "Usage:\n" << "    huffman_compressor_cpp -c input output\n" << "  huffman_compressor_cpp -d input output\n";
         return 1;
     }
 
