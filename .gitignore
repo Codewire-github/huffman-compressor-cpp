@@ -1,0 +1,35 @@
+# Build artifacts
+/build/
+/CMakeFiles/
+/CMakeCache.txt
+/Makefile
+/*.cmake
+/*.o
+/*.obj
+/*.out
+/*.a
+/*.so
+/*.dll
+/*.exe
+
+# VS Code settings
+.vscode/
+
+# macOS system files
+.DS_Store
+
+# Logs and temp
+*.log
+*.tmp
+
+# Backup files
+*~
+*.swp
+*.bak
+
+# Ignore compressed output
+*.bin
+*.hc
+
+# Ignore test output
+*.test.*
