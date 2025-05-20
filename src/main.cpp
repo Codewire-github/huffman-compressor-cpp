@@ -4,7 +4,7 @@
 
 int main(int argc, char* argv[]) {
     if (argc < 4) {
-        std::cerr << "Usage:\n" << "    huffman_compressor_cpp -c input output\n" << "  huffman_compressor_cpp -d input output\n";
+        std::cerr << "Usage:\n" << "    huffman_compressor_cpp -c <input_file> <output_file>\n" << "  huffman_compressor_cpp -d <input_file> <output_file>\n";
         return 1;
     }
 
@@ -16,9 +16,11 @@ int main(int argc, char* argv[]) {
 
     if (mode == "-c") {
         compressor.compress(input, output);
+        std::cout << "File Compressed Successfully" << std::endl;
     }
     else if (mode == "-d") {
         compressor.decompress(input, output);
+        std::cout << "File Decompressed Successfully" << std::endl;
     }
     else {
         std::cerr << "Unknown mode: " << mode << "\n";
